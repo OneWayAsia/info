@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <rect width="128" height="128" rx="26" fill="#d94e47" />
+  <defs>
+    <path id="code-bracket-left" d="M 44 41 L 21 64 L 44 87" />
+    <path id="code-slash-line" d="M 59 101 L 70 27" />
+    <path id="code-bracket-right" d="M 84 41 L 107 64 L 84 87" />
+  </defs>
+  <g stroke="#ffffff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <use href="#code-bracket-left" />
+    <use href="#code-slash-line" />
+    <use href="#code-bracket-right" />
+  </g>
+</svg>

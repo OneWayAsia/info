@@ -1,0 +1,33 @@
+{
+  "name": "oneway-asia",
+  "version": "1.0.2",
+  "type": "module",
+  "packageManager": "pnpm@10.30.2",
+  "description": "OneWay.asia - Project Management, Consulting and Solutions Company",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "dev": "vite",
+    "build": "vite build",
+    "build:ssg": "vite build && node prerender.js",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
+    "vue": "^3.6.0-beta.9",
+    "vue-router": "5.0.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.4",
+    "lightningcss": "^1.32.0",
+    "vite": "8.0.3"
+  },
+  "overrides": {
+    "vue": "^3.6.0-beta.9"
+  },
+  "pnpm": {
+    "overrides": {
+      "vue": "^3.6.0-beta.9"
+    }
+  }
+}
