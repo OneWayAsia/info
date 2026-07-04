@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { ref, inject, computed, watch, onMounted, onUnmounted, nextTick, useTemplateRef } from 'vue'
+import { ref, inject, computed, watch, onUnmounted, useTemplateRef } from 'vue'
 import { useSectionVisibility } from '../../composables/useSectionVisibility'
 import { useScrollThemeInterceptor } from '../../composables/useScrollThemeInterceptor'
 import { COLOR_PRIMARY_RED, COLOR_TEXT_LIGHT } from '../../constants'
@@ -36,9 +36,12 @@ const sections = inject('sections', [])
 const activeSection = ref(sections[0]?.id || '')
 const navRef = useTemplateRef('navRef')
 
-const { indicatorThemes, updateAllIndicatorThemes, throttledUpdate } = useScrollThemeInterceptor(navRef, sections.length)
+const { indicatorThemes, update: updateIndicatorThemes } = useScrollThemeInterceptor(
+  navRef,
+  sections.length,
+  { container: '.snap-container' }
+)
 
-let snapContainer = null
 let isScrolling = false
 let scrollTimeout = null
 
@@ -93,7 +96,7 @@ watch(ratios, () => {
   // Step 1: If current section is still sufficiently visible, keep it active
   const currentVisibility = ratios[activeSection.value] ?? 0
   if (currentVisibility >= DEACTIVATION_THRESHOLD) {
-    updateAllIndicatorThemes()
+    updateIndicatorThemes()
     return
   }
 
@@ -120,23 +123,11 @@ watch(ratios, () => {
 
   if (newActiveSection && newActiveSection !== activeSection.value) {
     activeSection.value = newActiveSection
-    updateAllIndicatorThemes()
+    updateIndicatorThemes()
   }
-})
-
-onMounted(async () => {
-  await nextTick()
-  snapContainer = document.querySelector('.snap-container')
-  updateAllIndicatorThemes()
-  if (snapContainer) {
-    snapContainer.addEventListener('scroll', throttledUpdate, { passive: true })
-  }
-  window.addEventListener('resize', updateAllIndicatorThemes, { passive: true })
 })
 
 onUnmounted(() => {
-  if (snapContainer) snapContainer.removeEventListener('scroll', throttledUpdate)
-  window.removeEventListener('resize', updateAllIndicatorThemes)
   if (scrollTimeout) clearTimeout(scrollTimeout)
 })
 </script>
