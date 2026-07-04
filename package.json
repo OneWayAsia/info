@@ -14,20 +14,20 @@
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
-    "vue": "3.6.0-beta.10",
-    "vue-router": "5.0.6"
+    "vue": "3.6.0-beta.17",
+    "vue-router": "5.1.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.6",
+    "@vitejs/plugin-vue": "^6.0.7",
     "lightningcss": "^1.32.0",
-    "vite": "8.0.10"
+    "vite": "8.1.3"
   },
   "overrides": {
-    "vue": "^3.6.0-beta.9"
+    "vue": "3.6.0-beta.17"
   },
   "pnpm": {
     "overrides": {
-      "vue": "^3.6.0-beta.9"
+      "vue": "3.6.0-beta.17"
     }
   }
 }
