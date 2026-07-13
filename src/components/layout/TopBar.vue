@@ -7,8 +7,8 @@
 
       <div class="home-bar__default">
         <button class="home-bar__cell" @click="isExpanded = true">PROJECTS</button>
-        <button class="home-bar__cell" @click="goToSection('about-section')">ABOUT</button>
-        <button class="home-bar__cell" @click="goToSection('contact-section')">CONTACT</button>
+        <button class="home-bar__cell" @click="goToSection('about')">ABOUT</button>
+        <button class="home-bar__cell" @click="goToSection('contact')">CONTACT</button>
       </div>
 
       <div class="home-bar__projects">
@@ -70,7 +70,7 @@ const isOnIntro = ref(true)
 let scrollEl = null
 
 function handleScroll() {
-  isOnIntro.value = scrollEl.scrollTop < window.innerHeight * 0.5
+  isOnIntro.value = scrollEl.scrollTop < scrollEl.clientHeight * 0.5
 }
 
 function attachScroll() {
@@ -106,20 +106,12 @@ watch(isServiceRoute, async (onService) => {
 onUnmounted(() => detachScroll())
 
 function goToSection(id) {
-  const el = document.getElementById(id)
-  if (!el) return
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  el.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' })
+  router.push({ path: '/', hash: `#${id}` })
 }
 
 function goToStart() {
   if (route.path === '/') return
-  router.replace('/').then(() => {
-    requestAnimationFrame(() => {
-      const snapContainer = document.querySelector('.snap-container')
-      if (snapContainer) snapContainer.scrollTo({ top: 0, behavior: 'auto' })
-    })
-  })
+  router.replace('/')
 }
 
 const isVisible = computed(() => {

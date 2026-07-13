@@ -1,7 +1,7 @@
 <template>
   <div class="home-view">
     <AdaptiveNavigation />
-    <main class="snap-container">
+    <main ref="snapContainer" class="snap-container">
       <div class="snap-section" v-for="section in sections" :key="section.id" :id="section.id">
         <component :is="section.component" />
       </div>
@@ -10,19 +10,23 @@
 </template>
 
 <script setup>
-import { provide } from 'vue'
+import { provide, useTemplateRef } from 'vue'
 import AdaptiveNavigation from '../components/layout/AdaptiveNavigation.vue'
 import IntroSection from '../components/sections/IntroSection.vue'
 import AboutSection from '../components/sections/AboutSection.vue'
 import ContactSection from '../components/sections/ContactSection.vue'
+import { useHomeSectionNavigation } from '../composables/useHomeSectionNavigation'
 
 const sections = [
   { id: 'intro-section', label: 'Introduction', component: IntroSection },
-  { id: 'about-section', label: 'About', component: AboutSection },
-  { id: 'contact-section', label: 'Contact', component: ContactSection },
+  { id: 'about', label: 'About', component: AboutSection },
+  { id: 'contact', label: 'Contact', component: ContactSection },
 ]
 
 provide('sections', sections)
+
+const snapContainer = useTemplateRef('snapContainer')
+useHomeSectionNavigation(sections.map(section => section.id), snapContainer)
 </script>
 
 <style scoped>
@@ -49,6 +53,10 @@ provide('sections', sections)
 
 .snap-container::-webkit-scrollbar {
   display: none;
+}
+
+.snap-container--restoring {
+  scroll-snap-type: none;
 }
 
 .snap-section {

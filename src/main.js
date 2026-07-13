@@ -4,6 +4,10 @@ import router from './router'
 import './style.css'
 import { setupOrientationHandler } from './utils/orientationHandler'
 
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual'
+}
+
 setupOrientationHandler()
 
 const app = createApp(App)

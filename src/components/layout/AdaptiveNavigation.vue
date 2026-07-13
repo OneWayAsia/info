@@ -26,14 +26,17 @@
 
 <script setup>
 import { ref, inject, computed, watch, onUnmounted, useTemplateRef } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useSectionVisibility } from '../../composables/useSectionVisibility'
 import { useScrollThemeInterceptor } from '../../composables/useScrollThemeInterceptor'
 import { COLOR_PRIMARY_RED, COLOR_TEXT_LIGHT } from '../../constants'
 
 const SCROLL_DURATION = 1000
 const sections = inject('sections', [])
+const route = useRoute()
+const router = useRouter()
 
-const activeSection = ref(sections[0]?.id || '')
+const activeSection = ref(route.hash.slice(1) || sections[0]?.id || '')
 const navRef = useTemplateRef('navRef')
 
 const { indicatorThemes, update: updateIndicatorThemes } = useScrollThemeInterceptor(
@@ -56,17 +59,11 @@ const activeIndicatorColor = computed(() => {
 })
 
 const scrollToSection = (sectionId) => {
-  const element = document.getElementById(sectionId)
-  if (!element || isScrolling) return
+  if (isScrolling) return
 
   isScrolling = true
   activeSection.value = sectionId
-
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  element.scrollIntoView({
-    behavior: prefersReducedMotion ? 'auto' : 'smooth',
-    block: 'start'
-  })
+  router.push({ path: '/', hash: `#${sectionId}` })
 
   if (scrollTimeout) clearTimeout(scrollTimeout)
   scrollTimeout = window.setTimeout(() => {
@@ -124,6 +121,13 @@ watch(ratios, () => {
   if (newActiveSection && newActiveSection !== activeSection.value) {
     activeSection.value = newActiveSection
     updateIndicatorThemes()
+  }
+})
+
+watch(() => route.hash, (hash) => {
+  const sectionId = hash.slice(1)
+  if (sections.some(section => section.id === sectionId)) {
+    activeSection.value = sectionId
   }
 })
 

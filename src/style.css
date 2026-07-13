@@ -182,21 +182,23 @@ body {
   }
 }
 
-html.is-desktop-mode.is-portrait {
-  --heading-size-desktop: clamp(1.8rem, 5vw, 2.5rem);
-  --font-size-intro-text: clamp(0.9rem, 2.5vw, 1.2rem);
-  --section-padding: 30px 15px;
-  --nav-right-offset: 15px;
-  --nav-indicator-size: 10px;
-  --nav-indicator-spacing: 12px;
-}
+@media (min-width: 769px) and (max-width: 992px) and (orientation: portrait) {
+  :root {
+    --heading-size-desktop: clamp(1.8rem, 5vw, 2.5rem);
+    --font-size-intro-text: clamp(0.9rem, 2.5vw, 1.2rem);
+    --section-padding: 30px 15px;
+    --nav-right-offset: 15px;
+    --nav-indicator-size: 10px;
+    --nav-indicator-spacing: 12px;
+  }
 
-html.is-desktop-mode.is-portrait .title.large {
-  font-size: var(--heading-size-desktop);
-}
+  .title.large {
+    font-size: var(--heading-size-desktop);
+  }
 
-html.is-desktop-mode.is-portrait .title.intro-text {
-  font-size: var(--font-size-intro-text);
+  .title.intro-text {
+    font-size: var(--font-size-intro-text);
+  }
 }
 
 .section-full {
@@ -220,58 +222,60 @@ html.is-desktop-mode.is-portrait .title.intro-text {
   box-sizing: border-box;
 }
 
-html.is-desktop-mode.is-portrait .top-bar {
-  height: 56px;
-}
+@media (min-width: 769px) and (max-width: 992px) and (orientation: portrait) {
+  .top-bar {
+    height: 56px;
+  }
 
-html.is-desktop-mode.is-portrait .top-bar__item,
-html.is-desktop-mode.is-portrait .home-bar__cell {
-  font-size: clamp(0.6rem, 2vw, 0.7rem);
-  letter-spacing: 1px;
-}
+  .top-bar__item,
+  .home-bar__cell {
+    font-size: clamp(0.6rem, 2vw, 0.7rem);
+    letter-spacing: 1px;
+  }
 
-html.is-desktop-mode.is-portrait .home-title {
-  font-size: clamp(1.5rem, 5vw, 2.5rem);
-  max-width: 90vw;
-}
+  .home-title {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    max-width: 90vw;
+  }
 
-html.is-desktop-mode.is-portrait .row {
-  flex-wrap: wrap;
-}
+  .row {
+    flex-wrap: wrap;
+  }
 
-html.is-desktop-mode.is-portrait .col {
-  flex: 0 0 100%;
-  max-width: 100%;
-  height: 50dvh;
-}
+  .col {
+    flex: 0 0 100%;
+    max-width: 100%;
+    height: 50dvh;
+  }
 
-html.is-desktop-mode.is-portrait .col-content-wrapper {
-  height: 50dvh;
-}
+  .col-content-wrapper {
+    height: 50dvh;
+  }
 
-html.is-desktop-mode.is-portrait .inner-wrapper {
-  padding: 20px 15px;
-  width: 90%;
-}
+  .inner-wrapper {
+    padding: 20px 15px;
+    width: 90%;
+  }
 
-html.is-desktop-mode.is-portrait .heading {
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  margin-bottom: 10px;
-}
+  .heading {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 10px;
+  }
 
-html.is-desktop-mode.is-portrait .subtext {
-  font-size: clamp(0.8rem, 2vw, 1rem);
-}
+  .subtext {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+  }
 
-html.is-desktop-mode.is-portrait .info-text {
-  font-size: clamp(0.8rem, 2.5vw, 1.1rem);
-}
+  .info-text {
+    font-size: clamp(0.8rem, 2.5vw, 1.1rem);
+  }
 
-html.is-desktop-mode.is-portrait .base-divider {
-  width: 60px;
-  margin: 10px 0;
-}
+  .base-divider {
+    width: 60px;
+    margin: 10px 0;
+  }
 
-html.is-desktop-mode.is-portrait .base-divider--center {
-  margin: 10px auto;
+  .base-divider--center {
+    margin: 10px auto;
+  }
 }

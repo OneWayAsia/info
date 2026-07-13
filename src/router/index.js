@@ -43,11 +43,13 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior: () => false,
 })
 
 let resolveTransition = null
 
-router.beforeEach(() => {
+router.beforeEach((to, from) => {
+  if (to.path === from.path && to.hash !== from.hash) return
   if (!document.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
   return new Promise(resolve => {
     document.startViewTransition(() => {
