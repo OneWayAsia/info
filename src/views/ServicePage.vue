@@ -159,6 +159,12 @@ const { service } = defineProps({
   }
 }
 
+@media (orientation: landscape) and (min-width: 769px) and (max-width: 1440px) {
+  .service-page__inner :deep(.heading) {
+    font-size: clamp(1.5rem, 3vw, 3.5rem);
+  }
+}
+
 @media (orientation: landscape) and (max-height: 500px) {
   .service-page {
     --service-topbar-height: 48px;
