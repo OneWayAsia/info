@@ -1,0 +1,5 @@
+packages:
+  - .
+
+overrides:
+  vue: 3.6.0-rc.8
