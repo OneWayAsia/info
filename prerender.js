@@ -10,9 +10,13 @@ const ROUTES = TOPBAR_ITEMS.map(item => ({
 
 const template = readFileSync('dist/index.html', 'utf-8')
 
+const PREFETCH = '<link rel="prefetch" as="image" href="/UnderConstruction.svg" type="image/svg+xml">'
+const PRELOAD = '<link rel="preload" as="image" href="/UnderConstruction.svg" type="image/svg+xml">'
+
 for (const route of ROUTES) {
   const html = template
     .replace(/<title>[^<]*<\/title>/, `<title>${route.title}</title>`)
+    .replace(PREFETCH, PRELOAD)
     .replace(
       '</head>',
       `  <meta name="description" content="${route.description}">\n` +

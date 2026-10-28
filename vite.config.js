@@ -11,9 +11,6 @@ export default defineConfig({
       }
     }
   },
-  build: {
-    rolldownOptions: {},
-  },
   server: {
     port: 3000
   }

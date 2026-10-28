@@ -14,16 +14,6 @@
   --nav-indicator-spacing: 15px;
   --nav-right-offset: 30px;
 
-  /* Breakpoint tokens — use these values in @media queries across the project:
-     mobile:      480px   → @media (max-width: 480px)
-     tablet:      768px   → @media (max-width: 768px)
-     tablet-lg:   992px   → @media (max-width: 992px)
-     landscape-h: 500px   → @media (orientation: landscape) and (max-height: 500px) */
-  --bp-mobile: 480px;
-  --bp-tablet: 768px;
-  --bp-tablet-lg: 992px;
-  --bp-landscape-h: 500px;
-
   --font-size-intro-text: 1.5rem;
   --font-size-intro-text-mobile: 1.2rem;
 
